@@ -5,7 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import decloudius.app.portalti16.adapter.MahasiswaAdapter;
 import decloudius.app.portalti16.entity.DaftarMahasiswa;
+import decloudius.app.portalti16.entity.Mahasiswa;
 import decloudius.app.portalti16.network.Network;
 import decloudius.app.portalti16.network.Routes;
 import retrofit2.Call;
@@ -38,7 +40,11 @@ public class MainActivity extends AppCompatActivity{
                     //casting data yang didapatkan menjadi DaftarMahasiswa
                     DaftarMahasiswa mahasiswas = response.body();
 
+                    //get title
                     Log.d("TI16", mahasiswas.getTitle());
+
+                    //tampilkan daftar mahasiswa di recycler view
+                    MahasiswaAdapter adapter = new MahasiswaAdapter(mahasiswas.getData());
                 }
             }
 

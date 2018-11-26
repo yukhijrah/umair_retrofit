@@ -14,7 +14,7 @@ public class Network {
         return new Retrofit.Builder()
                 .baseUrl("https://ti16.herokuapp.com/")
                 .addConverterFactory(GsonConverterFactory.create())
-                .build()
+                .build();
     }
 
 }
