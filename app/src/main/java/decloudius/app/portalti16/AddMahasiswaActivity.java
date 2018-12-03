@@ -25,7 +25,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_mahasiswa);
 
         edtName = (EditText) findViewById(R.id.edt_name);
-        edtNim = (EditText) findViewById(R.id.txt_nim);
+        edtNim = (EditText) findViewById(R.id.edt_nim);
         btnAdd = (Button) findViewById(R.id.btn_add);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -48,15 +48,19 @@ public class AddMahasiswaActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     finish();//kembalik ke aktifitas sebelumnya
                 } else {
-                    Toast.makeText(AddMahasiswaActivity.this, "Maaf, terjadi kesalahan", Toast.LENGTH_SHORT).show();
+                    onErrorMahasiswa();
                 }
             }
 
             @Override
             public void onFailure(Call<Mahasiswa> call, Throwable t) {
-                Toast.makeText(AddMahasiswaActivity.this, "Maaf, terjadi kesalahan", Toast.LENGTH_SHORT).show();
 
+                onErrorMahasiswa();
             }
         });
+    }
+    private void onErrorMahasiswa(){
+        Toast.makeText(AddMahasiswaActivity.this, "Maaf, terjadi kesalahan", Toast.LENGTH_SHORT).show();
+
     }
 }
