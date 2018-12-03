@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddMahasiswaActivity"></activity>
+        <activity android:name=".AddMahasiswaActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>
