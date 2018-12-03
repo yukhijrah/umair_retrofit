@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import decloudius.app.portalti16.adapter.MahasiswaAdapter;
 import decloudius.app.portalti16.entity.DaftarMahasiswa;
@@ -57,16 +58,21 @@ public class MainActivity extends AppCompatActivity{
                     //tampilkan daftar mahasiswa di recycler view
                     MahasiswaAdapter adapter = new MahasiswaAdapter(mahasiswas.getData());
                     lstMahasiswa.setAdapter(adapter);
-
-
-
+                }else{
+                    onMahasiswaError();
                 }
+
             }
+
 
             @Override
             public void onFailure(Call<DaftarMahasiswa> call, Throwable t) {
 
             }
         });
+    }
+
+    private void onMahasiswaError(){
+        Toast.makeText(MainActivity.this,"Gagal, Silahkan periksa koneksi internet anda",Toast.LENGTH_LONG).show();
     }
 }
