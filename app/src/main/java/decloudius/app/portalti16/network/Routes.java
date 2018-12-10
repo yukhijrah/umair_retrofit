@@ -3,10 +3,12 @@ package decloudius.app.portalti16.network;
 import decloudius.app.portalti16.entity.DaftarMahasiswa;
 import decloudius.app.portalti16.entity.Mahasiswa;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by Umair on 11/26/2018.
@@ -35,6 +37,16 @@ public interface Routes {
     Call<Mahasiswa> postMahasiswa(
             @Field("name") String name,
             @Field("nim") String nim
+    );
+
+    /**
+     * untuk menghapus mahasiswa berdasarkan ID
+     * @param mhsId
+     * @return
+     */
+    @DELETE("mahasiswatest/{mhsId}")
+    Call<Mahasiswa> deleteMahasiswa(
+            @Path("mhsId") String mhsId
     );
 
 }

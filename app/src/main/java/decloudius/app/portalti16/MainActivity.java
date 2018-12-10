@@ -1,8 +1,10 @@
 package decloudius.app.portalti16;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity{
 
     private void requestDaftarMahasiswa(){
         //pertama, memanggil request dari retrofit yang sudah dibuat
-        Routes services = Network.request().create(Routes.class);
+        final Routes services = Network.request().create(Routes.class);
 
         //kite melakukan request terhadap getMahasiswa()
         services.getMahasiswa().enqueue(new Callback<DaftarMahasiswa>() {
@@ -90,6 +92,15 @@ public class MainActivity extends AppCompatActivity{
 
                     //tampilkan daftar mahasiswa di recycler view
                     MahasiswaAdapter adapter = new MahasiswaAdapter(mahasiswas.getData());
+                    //handle delete button
+                    adapter.setListener(new MahasiswaAdapter.MahasiswaListener(){
+                        @Override
+                        public void onDelete(int mhsId) {
+                            String id = String.valueOf(mhsId); //konversi int to string
+                            deleteMahasiswa(services, id);
+
+                        }
+                    });
                     lstMahasiswa.setAdapter(adapter);
                 }else{
                     onMahasiswaError();
@@ -116,6 +127,42 @@ public class MainActivity extends AppCompatActivity{
                 startActivity(pindah);
             }
         });
+    }
+
+    private void deleteMahasiswa(final Routes service,final String mhsId){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.app_name);
+        alert.setMessage("Are you sure ?");
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                service.deleteMahasiswa(mhsId).enqueue(new Callback<Mahasiswa>() {
+                    @Override
+                    public void onResponse(Call<Mahasiswa> call, Response<Mahasiswa> response) {
+                        if (response.isSuccessful()){
+                            requestDaftarMahasiswa();
+                        } else {
+                            onMahasiswaError();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Mahasiswa> call, Throwable t) {
+                        onMahasiswaError();
+                    }
+                });
+
+            }
+        });
+        alert.show();
+
+
     }
 
 
