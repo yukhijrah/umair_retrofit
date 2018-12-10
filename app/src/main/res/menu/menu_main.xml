@@ -6,6 +6,6 @@
         android:id="@+id/menu_refresh"
         android:title="refresh"
         android:icon="@mipmap/ic_refresh"
-        app:showAsAction="ifRoom"
+        app:showAsAction="ifRoom"/>
 
 </menu>

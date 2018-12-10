@@ -22,7 +22,7 @@ public class Network {
         //buat client agar bisa menggunakan interceptor
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .build()
+                .build();
 
         return new Retrofit.Builder()
                 //main url dari web
