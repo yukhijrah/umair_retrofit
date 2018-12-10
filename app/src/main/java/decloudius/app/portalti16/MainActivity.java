@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -50,6 +52,24 @@ public class MainActivity extends AppCompatActivity{
         super.onStart();
         requestDaftarMahasiswa();
         onButtonMahasiswa();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //menampilkan menu di activity
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_refresh:
+                //ketica icon di click, maka....
+                requestDaftarMahasiswa();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void requestDaftarMahasiswa(){
