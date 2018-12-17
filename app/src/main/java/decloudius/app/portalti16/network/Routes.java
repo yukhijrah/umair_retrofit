@@ -56,8 +56,8 @@ public interface Routes {
     @FormUrlEncoded
     Call<Mahasiswa> updateMahasiswa(
             @Path("mhsId") String mhsId,
-            @Path("name") String name,
-            @Path("nim") String nim
+            @Field("name") String name,
+            @Field("nim") String nim
     );
 
 }

@@ -50,7 +50,7 @@ public class DetailMahasiswaActivity extends AppCompatActivity {
                 });
                 break;
             case Consts.INTENT_EDIT:
-                Mahasiswa mahasiswa = (Mahasiswa) getIntent().getSerializableExtra("Mahasiswa");
+                final Mahasiswa mahasiswa = (Mahasiswa) getIntent().getSerializableExtra("Mahasiswa");
                 edtName.setText(mahasiswa.getName());
                 edtNim.setText(mahasiswa.getNim());
 
@@ -58,12 +58,41 @@ public class DetailMahasiswaActivity extends AppCompatActivity {
                 btnAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
+                        mahasiswa.setName(edtName.getText().toString());
+                        mahasiswa.setNim(edtNim.getText().toString());
+                        updateMahasiswa(mahasiswa);
                     }
                 });
                 break;
         }
 
+    }
+
+    private void updateMahasiswa(Mahasiswa mahasiswa){
+        Routes services = Network.request().create(Routes.class);
+
+        String mahasiswaId = String.valueOf(mahasiswa.getId());
+        String name = mahasiswa.getName();
+        String nim = mahasiswa.getNim();
+
+        services.updateMahasiswa(mahasiswaId, name, nim).enqueue(new Callback<Mahasiswa>() {
+            @Override
+            public void onResponse(Call<Mahasiswa> call, Response<Mahasiswa> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(DetailMahasiswaActivity.this,
+                            "update berhasil! owo",
+                            Toast.LENGTH_LONG).show();
+                    finish();//kembali ke aktifitas sebelumnya
+                } else {
+                    onErrorMahasiswa();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Mahasiswa> call, Throwable t) {
+
+            }
+        });
     }
 
     private void addNewMahasiswa(String name, String nim){
