@@ -32,13 +32,20 @@ public class DetailMahasiswaActivity extends AppCompatActivity {
         String action = getIntent().getStringExtra(Consts.KEY_ACTION_DETAIL);
         switch (action) {
             case Consts.INTENT_ADD:
-                btnAdd.setText("TAMBAHA MAHASISWA");
+                btnAdd.setText("TAMBAH MAHASISWA");
                 btnAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String name = edtName.getText().toString();
                         String nim = edtNim.getText().toString();
                         addNewMahasiswa(name, nim);
+                        if (!name.isEmpty() && !nim.isEmpty()){
+                            addNewMahasiswa(name, nim);
+                        } else {
+                            Toast.makeText(DetailMahasiswaActivity.this,
+                                    "Maaf, nama dan nim tidak boleh kosong",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
                 break;
