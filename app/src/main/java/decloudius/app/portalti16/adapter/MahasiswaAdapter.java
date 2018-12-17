@@ -13,6 +13,7 @@ import decloudius.app.portalti16.DetailMahasiswaActivity;
 import decloudius.app.portalti16.R;
 import decloudius.app.portalti16.entity.Mahasiswa;
 import decloudius.app.portalti16.holder.MahasiswaHolder;
+import decloudius.app.portalti16.util.Consts;
 
 /**
  * Created by Umair on 11/26/2018.
@@ -41,7 +42,14 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaHolder>{
         mahasiswaHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //definisikan postition untuk getMahasiswa.
+                int adapterPosition = mahasiswaHolder.getAdapterPosition();
+                Mahasiswa mahasiswa = mahasiswas.get(adapterPosition);
+
+
                 Intent detailIntent = new Intent(context, DetailMahasiswaActivity.class);
+                detailIntent.putExtra("Mahasiswa", mahasiswa);
+                detailIntent.putExtra(Consts.KEY_ACTION_DETAIL, Consts.INTENT_EDIT);
                 context.startActivity(detailIntent);
             }
         });

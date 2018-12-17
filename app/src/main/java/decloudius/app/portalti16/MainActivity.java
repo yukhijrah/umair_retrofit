@@ -21,6 +21,7 @@ import decloudius.app.portalti16.entity.DaftarMahasiswa;
 import decloudius.app.portalti16.entity.Mahasiswa;
 import decloudius.app.portalti16.network.Network;
 import decloudius.app.portalti16.network.Routes;
+import decloudius.app.portalti16.util.Consts;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -123,8 +124,9 @@ public class MainActivity extends AppCompatActivity{
         btnMahasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pindah = new Intent(MainActivity.this, DetailMahasiswaActivity.class);
-                startActivity(pindah);
+                Intent addIntent = new Intent(MainActivity.this, DetailMahasiswaActivity.class);
+                addIntent.putExtra(Consts.KEY_ACTION_DETAIL, Consts.INTENT_ADD);
+                startActivity(addIntent);
             }
         });
     }

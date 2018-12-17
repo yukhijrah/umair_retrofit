@@ -1,11 +1,13 @@
 package decloudius.app.portalti16.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Umair on 11/26/2018.
  */
 
 
-public class Mahasiswa {
+public class Mahasiswa implements Serializable{
 
     private int id;
     private String name;
