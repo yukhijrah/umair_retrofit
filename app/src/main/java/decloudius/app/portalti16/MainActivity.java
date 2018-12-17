@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +19,6 @@ import android.widget.Toast;
 import decloudius.app.portalti16.adapter.MahasiswaAdapter;
 import decloudius.app.portalti16.entity.DaftarMahasiswa;
 import decloudius.app.portalti16.entity.Mahasiswa;
-import decloudius.app.portalti16.holder.MahasiswaHolder;
 import decloudius.app.portalti16.network.Network;
 import decloudius.app.portalti16.network.Routes;
 import retrofit2.Call;
@@ -33,7 +33,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity{
 
     RecyclerView lstMahasiswa;
-    Button btnMahasiswa;
+    FloatingActionButton btnMahasiswa;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity{
         lstMahasiswa = (RecyclerView)findViewById(R.id.lst_mahasiswa);
         lstMahasiswa.setLayoutManager(new LinearLayoutManager(this));
 
-        btnMahasiswa = (Button) findViewById(R.id.btn_to_add);
+        btnMahasiswa = (FloatingActionButton) findViewById(R.id.btn_to_add);
 
         requestDaftarMahasiswa();
     }
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity{
         btnMahasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent pindah = new Intent(MainActivity.this, AddMahasiswaActivity.class);
+                Intent pindah = new Intent(MainActivity.this, DetailMahasiswaActivity.class);
                 startActivity(pindah);
             }
         });

@@ -14,7 +14,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddMahasiswaActivity extends AppCompatActivity {
+public class DetailMahasiswaActivity extends AppCompatActivity {
 
     private EditText edtName, edtNim;
     private Button btnAdd;
@@ -22,7 +22,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_mahasiswa);
+        setContentView(R.layout.activity_detail_mahasiswa);
 
         edtName = (EditText) findViewById(R.id.edt_name);
         edtNim = (EditText) findViewById(R.id.edt_nim);
@@ -60,7 +60,7 @@ public class AddMahasiswaActivity extends AppCompatActivity {
         });
     }
     private void onErrorMahasiswa(){
-        Toast.makeText(AddMahasiswaActivity.this, "Maaf, terjadi kesalahan", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DetailMahasiswaActivity.this, "Maaf, terjadi kesalahan", Toast.LENGTH_SHORT).show();
 
     }
 }
