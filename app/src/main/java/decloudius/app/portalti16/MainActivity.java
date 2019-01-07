@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.menu_fav:
                 startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
-                finish();
                 break;
             case R.id.menu_refresh:
                 //ketica icon di click, maka....
