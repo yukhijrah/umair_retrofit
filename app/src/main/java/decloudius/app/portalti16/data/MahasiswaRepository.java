@@ -4,6 +4,8 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import java.util.List;
+
 import decloudius.app.portalti16.entity.Mahasiswa;
 
 /**
@@ -25,12 +27,16 @@ public class MahasiswaRepository {
     }
 
     public void insertMahasiswa(final Mahasiswa mahasiswa){
-        new AsyncTask<Void, Void, Void, Void>(){
+        new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
                 mahasiswaDatabase.mahasiswaDao().insert(mahasiswa);
                 return null;
             }
         }.execute();
+    }
+
+    public List<Mahasiswa> getMahasiswas(){
+        return mahasiswaDatabase.mahasiswaDao().getMahasiswa();
     }
 }

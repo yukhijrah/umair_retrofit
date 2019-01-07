@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import decloudius.app.portalti16.adapter.MahasiswaAdapter;
+import decloudius.app.portalti16.data.MahasiswaRepository;
 import decloudius.app.portalti16.entity.DaftarMahasiswa;
 import decloudius.app.portalti16.entity.Mahasiswa;
 import decloudius.app.portalti16.network.Network;
@@ -67,6 +68,10 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.menu_fav:
+                startActivity(new Intent(MainActivity.this, FavoriteActivity.class));
+                finish();
+                break;
             case R.id.menu_refresh:
                 //ketica icon di click, maka....
                 requestDaftarMahasiswa();
@@ -100,6 +105,12 @@ public class MainActivity extends AppCompatActivity{
                             String id = String.valueOf(mhsId); //konversi int to string
                             deleteMahasiswa(services, id);
 
+                        }
+
+                        @Override
+                        public void onFavorite(Mahasiswa mahasiswa) {
+                            MahasiswaRepository mhsRepository = new MahasiswaRepository(MainActivity.this);
+                            mhsRepository.insertMahasiswa(mahasiswa);
                         }
                     });
                     lstMahasiswa.setAdapter(adapter);

@@ -8,4 +8,9 @@
         android:icon="@mipmap/ic_refresh"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/menu_fav"
+        android:title="Favorite"
+        android:icon="@mipmap/ic_favorite"
+        app:showAsAction="ifRoom"/>
 </menu>
